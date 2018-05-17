@@ -5,12 +5,11 @@
 # See documentation in:
 # https://doc.scrapy.org/en/latest/topics/items.html
 
-import scrapy
+from scrapy import Item, Field
 
 
-class girlItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    girl_name = scrapy.Field()
-    girl_postId = scrapy.Field()
-    girl_url = scrapy.Field()
+class my_item(Item):
+    id = Field()
+    thumb = Field()
+    url = Field()
+    title = Field()

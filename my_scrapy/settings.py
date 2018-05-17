@@ -15,7 +15,7 @@ SPIDER_MODULES = ['my_scrapy.spiders']
 NEWSPIDER_MODULE = 'my_scrapy.spiders'
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
-# USER_AGENT = 'my_scrapy (+http://www.yourdomain.com)'
+# USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
@@ -46,13 +46,14 @@ ROBOTSTXT_OBEY = False
 # Enable or disable spider middlewares
 # See https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 # SPIDER_MIDDLEWARES = {
-#    'my_scrapy.middlewares.MyScrapySpiderMiddleware': 543,
+#     'my_scrapy.middlewares.MyScrapySpiderMiddleware': 543,
 # }
 
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 # DOWNLOADER_MIDDLEWARES = {
-#    'my_scrapy.middlewares.MyScrapyDownloaderMiddleware': 543,
+#     'my_scrapy.middlewares.MyScrapyDownloaderMiddleware': 543,
+#     'my_scrapy.middle_agent.MiddleAgent': 300
 # }
 
 # Enable or disable extensions
@@ -64,8 +65,22 @@ ROBOTSTXT_OBEY = False
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   'my_scrapy.pipelines.MyScrapyPipeline': 300,
+    "my_scrapy.pipe_image.Pipeline_image": 300,
+    'my_scrapy.pipe_mongo.Pipeline_mongo': 301,
+    'my_scrapy.pipe_mysql.Pipeline_mysql': 302
+
 }
+MONGO_HOST = '127.0.0.1'
+MONGO_PORT = 27017
+MAX_PAGE = 60
+
+MYSQL_HOST = 'localhost'
+MYSQL_PORT = 3306
+MYSQL_DB = "beauty360"
+MYSQL_USER = 'root'
+MYSQL_PASSWORD = 'zhouang'
+
+IMAGES_STORE = './image'
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/autothrottle.html
@@ -82,7 +97,7 @@ ITEM_PIPELINES = {
 
 # Enable and configure HTTP caching (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html#httpcache-middleware-settings
-HTTPCACHE_ENABLED = True
+HTTPCACHE_ENABLED = False
 HTTPCACHE_EXPIRATION_SECS = 0
 HTTPCACHE_DIR = 'httpcache'
 HTTPCACHE_IGNORE_HTTP_CODES = []
